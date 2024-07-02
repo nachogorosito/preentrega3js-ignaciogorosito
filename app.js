@@ -1,4 +1,4 @@
-// Carga de stock y precio mayorista para un supermercado + Calculo de precio lista + Calculo de precio con tarjeta
+// Calculo de precio lista + Calculo de precio con tarjeta para negocios
 
 alert("Bienvenido! Te ayudamos a llevar el control de tu negocio. Por favor, sigue las instrucciones")
 
