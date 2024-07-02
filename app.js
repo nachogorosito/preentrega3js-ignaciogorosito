@@ -1,29 +1,27 @@
-// Calculador de stock y precios de venta al publico para un supermercado
+// Carga de stock y precio mayorista para un supermercado + Calculo de precio lista + Calculo de precio con tarjeta
 
-// Primero se le pide al vendedor el % de recargo que se quiere aplicar segun cada sector de producto. Sectores: verduleria, carniceria, conservas, panaderia, limpieza
+alert("Bienvenido! Te ayudamos a llevar el control de tu negocio. Por favor, sigue las instrucciones")
 
-alert("Bienvenido! Te ayudamos a llevar el control de tu stock. Por favor, sigue las instrucciones")
+let ComoSeguir = prompt("Si queres ingresar un nuevo producto marca 1, si querés calcular un precio en cuotas marca 2, si no 0 para cancelar")
 
+if(ComoSeguir=="1"){
+    let Producto1 = prompt("Ingresa el nombre del producto")
+    let Precio1 = Number(prompt("Ingresa el precio mayorista"))
+    let Dto1 = Number(prompt("Ingresa el % de recargo, solo el numero"))
 
-//funciones
+    let PrecioFinal = (precio,dto) => {return precio + ((dto*0.01)*precio)}
 
-function recargos(){
-    let RecargoVerduleria = Number(prompt("cuanto queres recargar a los productos de verduleria"))
-    let recargoCarniceria = Number(prompt("cuanto queres recargar a los productos de carniceria"))
-    let recargoConservas = Number(prompt("cuanto queres recargar a los produtos de conservas")) 
-    let recargoPanaderia = Number(prompt("cuanto queres recargar a los productos de panaderia"))
-    let recargoLimpieza = Number(prompt("cuanto queres recargar a los produtos de limpieza"))
-
-    console.log (`Recargo Verduleria = ${RecargoVerduleria}`)
-    console.log (`Recargo Carniceria = ${recargoCarniceria}`)
-    console.log (`Recargo Conservas = ${recargoConservas}`)
-    console.log (`Recargo Panaderia = ${recargoPanaderia}`)
-    console.log (`Recargo Limpieza = ${recargoLimpieza}`)
+    let PrecioLista = PrecioFinal(Precio1, Dto1)
+    console.log(PrecioLista)
 }
+else if(ComoSeguir=="2"){
 
-let ComoSeguir = prompt("ingresa 1 para cargar tus productos o 2 para modificar los recargos por sector")
-
-if(ComoSeguir=="1"){console.log("0")}
-else if(ComoSeguir=="2"){recargos()}
+    let PrecioLista2 = Number(prompt("Ingresa el precio de lista de tu producto"))
+    let NCuotasIncial = Number(prompt("Ingresa el numero minimo de cuotas que quieres ofrecer"))
+    for (i = NCuotasIncial; i < 12; i++) {
+        console.log(PrecioLista2 + ((i * 10)*0.010)*PrecioLista2)
+    }
+    
+}
 else{console.log("numero invalido")}
 
