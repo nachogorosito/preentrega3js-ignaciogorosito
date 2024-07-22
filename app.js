@@ -1,30 +1,95 @@
-// Calculo de precio lista + Calculo de precio con tarjeta para negocios
-// La opción 1 te permite calcular el precio de lista de un producto, a partir de un precio mayorista y un dto elegido
-// La opción 2 te calcula los precios en cuota de un producto, a partir de un precio de lista. Por cada cuota se suma un 10% de interés
+let productos = [];
+let contador = 1;
 
-alert("Bienvenido! Te ayudamos a llevar el control de tus precios. Por favor, sigue las instrucciones")
+let botonAgregarProducto = document.getElementById("btn-agregar");
+let listaDeProductos = document.getElementById("lista-productos");
 
-let ComoSeguir = prompt("Si querés ingresar un nuevo producto marcá 1, si querés calcular un precio en cuotas marcá 2, sino 0 para cancelar")
+console.log(botonAgregarProducto);
+console.log(listaDeProductos);
 
-if(ComoSeguir=="1"){
-    let Producto1 = prompt("Ingresa el nombre del producto")
-    let Precio1 = Number(prompt("Ingresa el precio mayorista"))
-    let Dto1 = Number(prompt("Ingresa el % de recargo, solo el numero"))
+let funcionAgregarProducto = () => {
 
-    let PrecioFinal = (precio,dto) => {return precio + ((dto*0.01)*precio)}
+    let productoNombre = prompt("Ingresa el nombre del producto")
+    let productoPrecioMayorista = Number(prompt("Ingresa el precio mayorista"))
+    let productoRecargo = Number(prompt("Ingresa el % de recargo, solo el numero"))
+    
+    let funcionPrecioFinal = (precio,rgo) => {return precio + ((rgo*0.01)*precio)}
 
-    let PrecioLista1 = PrecioFinal(Precio1, Dto1)
-    console.log(`Precio ${Producto1} = $ ${PrecioLista1}`)
+    let productoPrecioFinal = funcionPrecioFinal(productoPrecioMayorista, productoRecargo)
+    let stock = prompt("Ingresa el stock")
+
+    let producto = {
+        id: contador, 
+        nombre: productoNombre, 
+        precioMayorista: productoPrecioMayorista, 
+        recargo: productoRecargo,
+        precioDeLista: productoPrecioFinal,
+        stock: stock
+    };
+
+    productos.push(producto);
+    contador++;
+
+    ordenarProductos()
+    console.log(productos)
+    renderProductos()
+};
+
+botonAgregarProducto.addEventListener("click", funcionAgregarProducto);
+
+const ordenarProductos = () => {
+    productos.sort((a, b) => {
+        if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) return -1;
+        if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) return 1;
+        return 0;
+    });
 }
-else if(ComoSeguir=="2"){
-    let PrecioLista2 = Number(prompt("Ingresa el precio de lista de tu producto"))
-    let NCuotasIncial = Number(prompt("Ingresa el numero minimo de cuotas que quieres ofrecer"))
-    for (let i = NCuotasIncial; i <= 12; i++) {
-        let texto = "Cant de cuotas " + i + " = $" + (PrecioLista2 + ((i * 10)*0.010)*PrecioLista2) 
-        console.log(texto)
-    }   
+
+const renderProductos = () => {
+  
+    listaProductos.innerHTML  = "";
+  
+    productos.forEach((elemento) => {
+        let itemListaProductos = document.createElement("li");
+        itemListaProductos.className = "tarjeta";
+        
+        itemListaProductos.innerHTML = `
+        <span>${elemento.nombre}</span> 
+        <span>$ ${elemento.precioDeLista}</span> 
+        <span>${elemento.stock}</span> 
+        <button class="botonCambiar">Cambiar stock</button>
+        <button class="botonBorrar">Borrar</button>`;
+    
+        let botonCambiarProducto = itemListaProductos.querySelector(".botonCambiar")
+        let botonBorrarProducto = itemListaProductos.querySelector(".botonBorrar")
+
+        botonCambiarProducto.addEventListener("click", () => {
+            cambiarProducto (elemento);
+        });
+
+        botonBorrarProducto.addEventListener("click", () => { 
+            borrarProducto(elemento);
+        });
+
+        listaProductos.appendChild(itemListaProductos);
+
+    
+    });  
+
+    
+};
+
+renderProductos();
+
+const cambiarProducto = (elemento) => {
+    let productoEncontrado = productos.find((producto) => producto.id === elemento.id);
+    productoEncontrado.stock = prompt("Ingresa el stock");
+    ordenarProductos();
+    renderProductos();
 }
-else if(ComoSeguir=="0"){
-    alert("Gracias por usar nuestro sistema. Te esperamos la próxima")
+
+const borrarProducto = (elemento) => {
+    productos = productos.filter( producto => producto.id !== elemento.id)
+    ordenarProductos();
+    renderProductos();
 }
-else{console.log("Haz ingresado una opción no válida, ingresa un número del 0 al 2 según corresponda")}
