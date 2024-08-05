@@ -8,15 +8,28 @@
 </head>
 <body>
 
-    <h1>Control de inventario</h1>
-
-    <div class="contenedor-btn-agregar">
-        <button id="btn-agregar">Agregar producto</button>
+    <header>
+        <h1>CONTROL DE INVENTARIO</h1>
+        <a href="./compra.html">Ver compra cliente</a>
+    </header>
+    
+    <form class="contenedor">
+        <h2>AGREGAR PRODUCTO</h2>
+        <input type="text" placeholder="Nombre del producto" id="ingresar-nombre" class="inputs-agregar">
+        <input type="number" placeholder="Precio mayorista" id="ingresar-precio" class="inputs-agregar">
+        <input type="number" placeholder="% de recargo" id="ingresar-recargo" class="inputs-agregar">
+        <input type="number" placeholder="Stock" id="ingresar-stock" class="inputs-agregar">
+        <button type="reset" class="botones-agregar">Borrar datos</button>
+        <button type="submit" class="botones-agregar">Guardar producto</button>
+    </form>
+       
+    <div class="contenedor-input">
+        <h3>LISTA DE PRODUCTOS</h3>
+        <input type="text" placeholder="Buscar producto" id="Buscar" class="buscador">
     </div>
-   
+
     <ul id="listaProductos"></ul>
 
-    <script src="/app.js"></script>
+    <script src="/main.js"></script>
 </body>
 </html>
-

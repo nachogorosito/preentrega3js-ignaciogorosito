@@ -4,68 +4,167 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: ;
+}
+
 h1 {
+    font-size: 35px;
+    margin-bottom: 20px;
     text-align: center;
+    font-family: 'Calibri';
     margin-top: 20px;
 }
 
-.contenedor-btn-agregar {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
+a {
+    padding: 30px;
+    margin-top: 30px;
+    font-family: 'Calibri';
+    color: blue;
 }
 
-#btn-agregar {
-   margin-top: 20px;
-   padding: 10px;
-   background-color: brown;
-   color: whitesmoke;
-   border: none;
-   cursor: pointer;
-   margin: 0 auto;
-   width: 500px;
+.contenedor {
+    width: auto;
+    flex-direction: column;
+    justify-items: auto;
+    background: #24303c;
+    padding: 30px;
+    margin-top: 30px;
+    font-family: 'Calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.inputs-agregar {
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #1f53c5;
+    font-family: 'Calibri';
+    font-size: 18px;
+    color: white;
+}
+
+.botones-agregar {
+    width: 100%;
+    background: #1f53c5;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+.contenedor-input {
+    width: auto;
+    flex-direction: column;
+    justify-items: auto;
+    background: #24303c;
+    padding: 30px;
+    margin-top: 30px;
+    font-family: 'Calibri';
+    color: white;
+}
+
+h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.buscador {
+    width: 100%;
+    background: whitesmoke;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #1f53c5;
+    font-family: 'Calibri';
+    font-size: 18px;
 }
 
 #listaProductos {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 20px;
-    width: 500px;
+    font-family: Calibri;
+    font-size: 20px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 16px;
     margin: 0 auto;
-    border: 1px solid #aa0404;
     gap: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 400px;
+    margin-top: 20px;
 }
+
 
 #listaProductos span {
     flex: 1;
+    padding: 5px;
 }
 
 .tarjeta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 5px 0;
     padding: 5px;
-    background-color: #5656563e;
-    border: 1px solid #56565614;
+    background-color:  whitesmoke;
     width: 100%;
+    font-size: 22px;
+    color: black;
 }
 
 .botonCambiar {
-    background-color: beige;
-    color: black;
-    border: none;
-    padding: 5px;
-    cursor:pointer;
+    background: #1f53c5;
+    border-radius: 5px;
+    border-color: white;
+    padding: 12px;
+    color: white;
+    margin: 10px 0;
+    font-size: 16px;
 }
 
 .botonBorrar {
-    background-color: #f4c6ba;
-    color: black;
-    border: none;
+    background: #810707;
+    border-radius: 5px;
+    border-color: white;
+    padding: 12px;
+    color: white;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.botonAgregar {
+    background: #006405;
+    border-radius: 5px;
+    border-color: white;
+    padding: 12px;
+    color: white;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+#contenedor-carrito {
+    font-family: Calibri;
+    font-size: 20px;
     padding: 5px;
-    cursor:pointer;
+    width: 70%;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    margin: 0 auto;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
 }
