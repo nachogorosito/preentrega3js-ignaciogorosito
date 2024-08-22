@@ -1,21 +1,25 @@
-// Variables de inicio
+// VARIABLES
 
+// Propiedades que voy a actualizar de cada producto
 let productoNombre = "";
 let productoPrecioMayorista = "";
 let productoRecargo = "";
 let productoStock = "";
 
+// Crear array de productos en el local storage y contador para generar el ID
 let productos = JSON.parse(localStorage.getItem("inventario")) ?? [];
 let contador = productos.length ? Math.max(...productos.map(p => p.id)) + 1 : 1;;
 
-let botonAgregarProducto = document.getElementById("btn-agregar");
-let listaDeProductos = document.getElementById("lista-productos");
+// Recuperar elementos del html
+let botonAgregarProducto = document.getElementById("inputs-agregar");
+let listaDeProductos = document.getElementById("listaProductos");
 const inputBuscar = document.getElementById("Buscar");
 
+// Crear array de compra en el local storage
 let carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
 
 
-// Funciones
+// FUNCIONES
 
 // Calcular precio final
 const PrecioFinal = (precio,rgo) => {
@@ -46,9 +50,10 @@ const renderProductos = (arrayProductos) => {
         itemListaProductos.className = "tarjeta";
         
         itemListaProductos.innerHTML = `
-        <span>${producto.nombre}</span> 
-        <span>$ ${producto.precioDeLista}</span> 
-        <span>${producto.stock} u.</span> 
+        <p>${producto.nombre}</p> 
+        <p>$ ${producto.precioDeLista} por ${producto.unidad}</p> 
+        <p>Stock disponible: ${producto.stock}</p> 
+        
         <button class="botonCambiar">Cambiar stock</button>
         <button class="botonBorrar">Borrar</button>
         <button class="botonAgregar">Agregar a Compra</button>
@@ -88,17 +93,74 @@ const cambiarProducto = (elemento) => {
 
 // Borrar producto
 const borrarProducto = (elemento) => {
-    productos = productos.filter( producto => producto.id !== elemento.id)
-    ordenarProductos();
-    renderProductos(productos);
+
+    Swal.fire({
+        title: "¿Seguro querés eliminar el producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí"
+      }).then((result) => {
+        if (result.isConfirmed) {
+             // Eliminar el producto del carrito
+             productos = productos.filter( producto => producto.id !== elemento.id)
+            // Ordenar array de productos y actualizar el DOM
+            ordenarProductos();
+            renderProductos(productos);
+            // Mostrar mensaje de éxito
+            Swal.fire({
+                title: "Producto eliminado",
+                icon: "success"
+            });
+        }
+      });
 }
 
 // Agregar producto al carrito del cliente
-const agregarProducto = (id) => {
-    let producto = id;
-    carrito.push (producto);
+const agregarProducto = (producto) => {
+
+     // Cargar el carrito desde el localStorage por si ha sido modificado
+     carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
+
+    //encontrar el producto en el carrito
+    let productoEnElCarrito = carrito.find( elemento => elemento.id === producto.id)
+
+    if (productoEnElCarrito) {
+        // Si el producto ya está en el carrito, aumenta la cantidad
+        if (producto.stock > 0) {
+            productoEnElCarrito.cantidad += 1;
+            producto.stock -= 1; 
+        } else {
+            alert("No hay suficiente stock para agregar este producto.");
+            return;
+        }
+
+    } else {
+        // entra cuando el producto no está en carrito, agregalo 
+        if (producto.stock > 0) {
+            carrito.push({...producto, cantidad: 1});
+            producto.stock -= 1;
+        } else {
+            alert("No hay suficiente stock para agregar este producto.");
+            return;
+        }
+    }
+
+    // Guardar el carrito en localStorage
     localStorage.setItem( "carrito" , JSON.stringify(carrito));
-};
+
+    // Actualizar el inventario en localStorage
+    localStorage.setItem("inventario", JSON.stringify(productos));
+
+    // Renderizar los productos actualizados
+    renderProductos(productos);
+
+    };
+    
+
+
+    
 
 
 // Capturar los datos del formulario 
@@ -127,6 +189,11 @@ let inputStock =document.getElementById("ingresar-stock");
         productoStock = inputStock.value;
     });
 
+let inputUnidad = document.getElementById("ingresar-unidad");
+inputUnidad.addEventListener("change", () => {
+    productoUnidad = inputUnidad.value;
+});
+
 let miFormulario = document.querySelector("form");
     miFormulario.addEventListener("submit", (evento) => {
         evento.preventDefault();
@@ -137,7 +204,8 @@ let miFormulario = document.querySelector("form");
             precioMayorista: Number(productoPrecioMayorista), 
             recargo: Number(productoRecargo),
             precioDeLista: Number(PrecioFinal(Number(productoPrecioMayorista), Number(productoRecargo))),
-            stock: Number(productoStock)
+            stock: Number(productoStock),
+            unidad: productoUnidad
         };
         
         productos.push(producto);

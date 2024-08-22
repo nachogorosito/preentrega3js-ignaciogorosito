@@ -1,0 +1,22 @@
+[
+    {
+       "id":1,
+       "nombre": "Verdulería Don Juan",
+       "categoria": "Verdulería",
+       "direccion": "San Juan 2203",
+       "ciudad": "Pergamino",
+       "provincia": "Buenos Aires",
+       "cp": "2700",
+       "forma_de_pago": "transferencia" 
+    },
+    {
+        "id":2,
+        "nombre": "El Pollo Loco",
+        "categoria": "Pollería",
+        "direccion": "San Pedro 1930",
+        "ciudad": "Pergamino",
+        "provincia": "Buenos Aires",
+        "cp": "2700",
+        "forma_de_pago": "Efectivo" 
+     }
+]

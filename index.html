@@ -10,15 +10,25 @@
 
     <header>
         <h1>CONTROL DE INVENTARIO</h1>
-        <a href="./compra.html">Ver compra cliente</a>
+        <a href="./compra.html" class="enlace-compra">Ver compra cliente</a>
     </header>
     
     <form class="contenedor">
+
         <h2>AGREGAR PRODUCTO</h2>
+
         <input type="text" placeholder="Nombre del producto" id="ingresar-nombre" class="inputs-agregar">
         <input type="number" placeholder="Precio mayorista" id="ingresar-precio" class="inputs-agregar">
         <input type="number" placeholder="% de recargo" id="ingresar-recargo" class="inputs-agregar">
         <input type="number" placeholder="Stock" id="ingresar-stock" class="inputs-agregar">
+        
+        <label for="ingresar-unidad">Medida:</label>
+        <select id="ingresar-unidad" required>
+            <option value="uni">Unidad</option>
+            <option value="kg">Kilogramo</option>
+            <option value="lts">Litro</option>
+        </select>
+
         <button type="reset" class="botones-agregar">Borrar datos</button>
         <button type="submit" class="botones-agregar">Guardar producto</button>
     </form>
@@ -28,8 +38,11 @@
         <input type="text" placeholder="Buscar producto" id="Buscar" class="buscador">
     </div>
 
+    <a href="./proveedores.html" class="enlace-proveedores">LISTA DE PROVEEDORES</a>
+
     <ul id="listaProductos"></ul>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/main.js"></script>
 </body>
 </html>

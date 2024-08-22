@@ -4,9 +4,7 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: ;
-}
+
 
 h1 {
     font-size: 35px;
@@ -43,13 +41,23 @@ h2 {
 
 .inputs-agregar {
     width: 100%;
-    background: #24303c;
+    background: #cad0dc;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 16px;
-    border: 1px solid #1f53c5;
+    border: 1px solid #cad0dc;
     font-family: 'Calibri';
     font-size: 18px;
+    color: black;
+}
+
+#ingresar-unidad {
+    width: 20%;
+    background:   #24303c;
+    padding: 10px;
+    margin-bottom: 16px;
+    font-family: 'Calibri';
+    font-size: 15px;
     color: white;
 }
 
@@ -70,6 +78,7 @@ h2 {
     background: #24303c;
     padding: 30px;
     margin-top: 30px;
+    margin-bottom: 30px;
     font-family: 'Calibri';
     color: white;
 }
@@ -168,3 +177,72 @@ h3 {
     align-items: center;
     margin-top: 20px;
 }
+
+#totalCompra {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+    padding: 5px;
+    width: 70%;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    margin-top: 20px;
+    margin-left: 60%;
+}
+
+#finalizarCompra {
+    font-family: Calibri;
+    font-size: 30px;
+    padding: 5px;
+    width: 70%;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    margin: 0 auto;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.restarCantidad {
+        background: black;
+        border-radius: 5px;
+        border-color: white;
+        padding: 12px;
+        color: white;
+        margin: 10px 0;
+        font-size: 20px;
+    }
+
+    .sumarCantidad {
+        background: black;
+        border-radius: 5px;
+        border-color: white;
+        padding: 12px;
+        color: white;
+        margin: 10px 0;
+        font-size: 20px;
+    }
+
+    .enlace-proveedores {
+        padding: 30px;
+        margin-top: 30px;
+        margin-left: 80%;
+        font-family: 'Calibri';
+        color: blue;
+    }
+
+    .propiedades{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        text-align: center;
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+
+    .nombre-proveedor {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-weight:bold;
+        text-align: center;
+        margin-top: 5px;
+        margin-left: 10px;
+    }
